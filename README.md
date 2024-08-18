@@ -7,11 +7,11 @@ Thanks to the [kubernetes-the-hard-way](https://github.com/kelseyhightower/kuber
 This guide for virtual machine with AMD64 (Ubuntu) architecture. Contains the scripts and simple explanation for each components.
 
 ## Chapters
-1. Overview and System Requirement
-2. Setup Jump Host and provisioning cluster state
-3. Generate Own CA and self-signed certificates
-4. Provisioning and configuring
-5. Bootstrapping master node
-6. Bootstrapping worker nodes
-7. Remote access from jump host
-8. Pod routing between different nodes
+1. [Overview and System Requirement](/docs/01-overview.md)
+2. [Setup Jump Host and provisioning cluster state](/docs/02-setup-jump-host.md)
+3. [Generate Own CA and self-signed certificates](/docs/03-ca-cert.md)
+4. [Provisioning and configuring](/docs/04-provisioning.md)
+5. [Bootstrapping master node](/docs/05-master-node.md)
+6. [Bootstrapping worker nodes](/docs/06-worker-nodes.md)
+7. [Pod routing and DNS resolution](/docs/07-pod-routing.md)
+8. [Remote access from jump host](/docs/08-remote-access.md)
