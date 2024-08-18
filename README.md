@@ -6,7 +6,11 @@ Thanks to the [kubernetes-the-hard-way](https://github.com/kelseyhightower/kuber
 
 This guide for virtual machine with AMD64 (Ubuntu) architecture. Contains the scripts and simple explanation for each components.
 
-![dns](https://raw.githubusercontent.com/minhtri6179/k8s-so-hard-huhu/main/imgs/nslookup.png)
+## Demo
+Cluster running with 2 workers nodes
+
+![demo](https://raw.githubusercontent.com/minhtri6179/k8s-so-hard-huhu/main/imgs/demo.png)
+
 
 ## Chapters
 1. [Overview and System Requirement](/docs/01-overview.md)
