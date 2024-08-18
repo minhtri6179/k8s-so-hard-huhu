@@ -6,12 +6,11 @@ Thanks to the [kubernetes-the-hard-way](https://github.com/kelseyhightower/kuber
 
 This guide for virtual machine with AMD64 (Ubuntu) architecture. Contains the scripts and simple explanation for each components.
 
-## Chaperters
-1. Prerequisites
-2. Setting up resources in the cluster
-3. Provisioning Resources
-4. TLS Certificates
-5. Bootstrapping master node
-6. Bootstrapping worker nodes
-7. Remote access
-8. Pod range ip
+## Chapters
+1. Overview and System Requirement
+2. Provisioning and configuring
+3. Generate Own CA and self-signed certificates
+4. Bootstrapping master node
+5. Bootstrapping worker nodes
+6. Remote access from jump host
+7. Pod routing between different nodes
