@@ -1,4 +1,4 @@
-# Generate Own CA and self-signed certificates
+# Generate Own CA and self-signed certificates, kubeconfig
 This chapter create own CA and self-signed certificates
 
 ## Own CA 
@@ -39,26 +39,117 @@ for i in ${certs[*]}; do
 done
 ```
 
-### Distribute cert-key pairs to corresponding machines
-
-Each cert-key contains hostname and use to verify with CA server. Ensure these information correctly. If not the server will reject connection from clients.
-
+## Kubeconfig
+This script generate config and associated with the cert-key generated before
 ```bash
 for host in worker-152 worker-154; do
-  ssh root@$host mkdir /var/lib/kubelet/
-  
-  scp ca.crt root@$host:/var/lib/kubelet/
-    
-  scp $host.crt \
-    root@$host:/var/lib/kubelet/kubelet.crt
-    
-  scp $host.key \
-    root@$host:/var/lib/kubelet/kubelet.key
+  kubectl config set-cluster kubernetes-so-hard-huhu \
+    --certificate-authority=ca.crt \
+    --embed-certs=true \
+    --server=https://master-151.sre.local:6443 \
+    --kubeconfig=${host}.kubeconfig
+
+  kubectl config set-credentials system:node:${host} \
+    --client-certificate=${host}.crt \
+    --client-key=${host}.key \
+    --embed-certs=true \
+    --kubeconfig=${host}.kubeconfig
+
+  kubectl config set-context default \
+    --cluster=kubernetes-so-hard-huhu \
+    --user=system:node:${host} \
+    --kubeconfig=${host}.kubeconfig
+
+  kubectl config use-context default \
+    --kubeconfig=${host}.kubeconfig
 done
 
-scp \
-  ca.key ca.crt \
-  kube-api-server.key kube-api-server.crt \
-  service-accounts.key service-accounts.crt \
-  root@master-151:~/
+------
+
+kubectl config set-cluster kubernetes-so-hard-huhu \
+  --certificate-authority=ca.crt \
+  --embed-certs=true \
+  --server=https://master-151.sre.local:6443 \
+  --kubeconfig=kube-proxy.kubeconfig
+
+kubectl config set-credentials system:kube-proxy \
+  --client-certificate=kube-proxy.crt \
+  --client-key=kube-proxy.key \
+  --embed-certs=true \
+  --kubeconfig=kube-proxy.kubeconfig
+
+kubectl config set-context default \
+  --cluster=kubernetes-so-hard-huhu \
+  --user=system:kube-proxy \
+  --kubeconfig=kube-proxy.kubeconfig
+
+kubectl config use-context default \
+  --kubeconfig=kube-proxy.kubeconfig
+  
+----
+
+kubectl config set-cluster kubernetes-so-hard-huhu \
+  --certificate-authority=ca.crt \
+  --embed-certs=true \
+  --server=https://master-151.sre.local:6443 \
+  --kubeconfig=kube-controller-manager.kubeconfig
+
+kubectl config set-credentials system:kube-controller-manager \
+  --client-certificate=kube-controller-manager.crt \
+  --client-key=kube-controller-manager.key \
+  --embed-certs=true \
+  --kubeconfig=kube-controller-manager.kubeconfig
+
+kubectl config set-context default \
+  --cluster=kubernetes-so-hard-huhu \
+  --user=system:kube-controller-manager \
+  --kubeconfig=kube-controller-manager.kubeconfig
+
+kubectl config use-context default \
+  --kubeconfig=kube-controller-manager.kubeconfig
+
+`----`
+
+kubectl config set-cluster kubernetes-so-hard-huhu \
+  --certificate-authority=ca.crt \
+  --embed-certs=true \
+  --server=https://master-151.sre.local:6443 \
+  --kubeconfig=kube-scheduler.kubeconfig
+
+kubectl config set-credentials system:kube-scheduler \
+  --client-certificate=kube-scheduler.crt \
+  --client-key=kube-scheduler.key \
+  --embed-certs=true \
+  --kubeconfig=kube-scheduler.kubeconfig
+
+kubectl config set-context default \
+  --cluster=kubernetes-so-hard-huhu \
+  --user=system:kube-scheduler \
+  --kubeconfig=kube-scheduler.kubeconfig
+
+kubectl config use-context default \
+  --kubeconfig=kube-scheduler.kubeconfig
+  
+  
+-----
+
+kubectl config set-cluster kubernetes-so-hard-huhu \
+  --certificate-authority=ca.crt \
+  --embed-certs=true \
+  --server=https://127.0.0.1:6443 \
+  --kubeconfig=admin.kubeconfig
+
+kubectl config set-credentials admin \
+  --client-certificate=admin.crt \
+  --client-key=master-151.key \
+  --embed-certs=true \
+  --kubeconfig=admin.kubeconfig
+
+kubectl config set-context default \
+  --cluster=kubernetes-so-hard-huhu \
+  --user=admin \
+  --kubeconfig=admin.kubeconfig
+
+kubectl config use-context default \
+  --kubeconfig=admin.kubeconfig
 ```
