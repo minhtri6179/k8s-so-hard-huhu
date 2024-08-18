@@ -8,8 +8,9 @@ This guide for virtual machine with AMD64 (Ubuntu) architecture. Contains the sc
 
 ## Chapters
 1. Overview and System Requirement
-2. Generate Own CA and self-signed certificates
-3. Provisioning and configuring
+2. Setup Jump Host and provisioning cluster state
+3. Generate Own CA and self-signed certificates
+4. Provisioning and configuring
 5. Bootstrapping master node
 6. Bootstrapping worker nodes
 7. Remote access from jump host
