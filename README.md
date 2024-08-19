@@ -21,3 +21,6 @@ Cluster running with 2 workers nodes
 6. [Bootstrapping worker nodes](/docs/06-worker-nodes.md)
 7. [Pod routing and DNS resolution](/docs/07-pod-routing.md)
 8. [Remote access from jump host](/docs/08-remote-access.md)
+
+## Docs
+[Basic knowledge about k8s](https://like-tarragon-075.notion.site/k8s-Loki-Mimir-34cd6372654144558afeaea5154209be)
