@@ -1,6 +1,5 @@
 # k8s-so-hard-huhu
-This is my learning journal for deploying Kubernetes cluster on virtual machines. Just the copy script :v
-
+This is my learning journal for deploying a Kubernetes cluster on virtual machines. The setup script alone took me two weeks and many tears (huhu) to understand the concept =((.
 
 Thanks to the [kubernetes-the-hard-way](https://github.com/kelseyhightower/kubernetes-the-hard-way)
 
